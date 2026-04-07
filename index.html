@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Ritsika 🎂</title>
+<title>Happy Birthday Ritsika 🎀</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ffd6ec, #ffe6f7);
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom right, #ffd6eb, #ffc0cb);
   text-align: center;
   overflow: hidden;
 }
@@ -23,145 +23,177 @@ body {
 
 button {
   padding: 12px 25px;
-  border-radius: 25px;
+  font-size: 18px;
+  border-radius: 20px;
   border: none;
-  background: white;
-  color: #ff1493;
-  font-size: 16px;
+  background-color: hotpink;
+  color: white;
   cursor: pointer;
-  margin-top: 20px;
-}
-
-input {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
   margin-top: 15px;
 }
 
-#landing { display: flex; }
-
-#cake-area {
-  position: relative;
-  height: 100vh;
-  background: linear-gradient(#ffe6f7, #ffcce6);
+button:hover {
+  background-color: deeppink;
 }
 
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  color: pink;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Cake Styling */
 .cake {
-  font-size: 120px;
+  font-size: 160px;
 }
 
-.flame {
-  font-size: 40px;
+.candle {
+  font-size: 60px;
   position: relative;
-  top: -120px;
+  top: 30px;
 }
 
-#gift {
-  font-size: 100px;
-  cursor: pointer;
-  margin-top: 30px;
-}
-
-#letter {
-  display: none;
-  background: #fdf5e6;
-  width: 70%;
-  max-width: 500px;
-  padding: 20px;
+.parchment {
+  background: #f8e8c8;
+  padding: 30px;
+  width: 60%;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  margin-top: 20px;
-  font-family: "Courier New", cursive;
+  font-size: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Screen 1 -->
-<div id="landing" class="screen">
+<!-- MUSIC -->
+<iframe id="bgMusic"
+  width="0" height="0"
+  src="https://www.youtube.com/embed/cVAa0JH381Y?enablejsapi=1"
+  frameborder="0"
+  allow="autoplay"
+></iframe>
+
+<!-- LANDING -->
+<div class="screen" id="landing" style="display:flex;">
   <h1>Enter here Ritsi 🎀</h1>
-  <button onclick="goToQuestion()">Enter</button>
+  <button onclick="startExperience()">Enter</button>
 </div>
 
-<!-- Screen 2 -->
-<div id="question" class="screen">
-  <h2>Wait.</h2>
-  <h3>Important Question.</h3>
-  <p>Rate Bhavika on a scale of 1–10</p>
-  <input type="number" id="rating" min="1" max="10">
+<!-- QUESTION -->
+<div class="screen" id="question">
+  <h2>wait...</h2>
+  <h3>imp ques 🤨</h3>
+  <p>rate Bhavika on a scale of 1–10</p>
+  <input type="text" id="rating" placeholder="type here">
   <button onclick="checkAnswer()">Submit</button>
-  <p id="response"></p>
 </div>
 
-<!-- Screen 3 -->
-<div id="cake-area" class="screen">
+<!-- CAKE SCENE -->
+<div class="screen" id="cakeScene">
+  <div class="candle" id="flame">🕯️</div>
   <div class="cake">🎂</div>
-  <div class="flame" id="flame">🔥</div>
   <h2 id="countdown"></h2>
 </div>
 
-<!-- Screen 4 -->
-<div id="gift-screen" class="screen">
-  <h2>Open your gift 🎁</h2>
-  <div id="gift" onclick="openGift()">🎁</div>
+<!-- WISH -->
+<div class="screen" id="wishScene">
+  <h2>Make a wish 🎀</h2>
+</div>
 
-  <div id="letter">
+<!-- GIFT -->
+<div class="screen" id="giftScene">
+  <h2>Open your gift 🎁</h2>
+  <button onclick="openGift()">Open</button>
+</div>
+
+<!-- LETTER -->
+<div class="screen" id="letterScene">
+  <div class="parchment">
+    <h2>For Ritsika 🥺</h2>
     <p>
-      hello ritsi happy birthday ilysm i hope you have the sweetest and nicest birthday today and im so happy that youre getting old i wish you all the best mwah
+      hello ritsi happy birthday ilysm  
+      i hope you have the sweetest and nicest birthday today  
+      and im so happy that youre getting old  
+      i wish you all the best  
+      mwah 💗
     </p>
-    <p>— Bhavika 🤟🏻</p>
+    <p>— Bhavika 🎀</p>
   </div>
 </div>
 
 <script>
-function goToQuestion() {
+
+function startExperience() {
   document.getElementById("landing").style.display = "none";
   document.getElementById("question").style.display = "flex";
+
+  // Start music after click
+  document.getElementById("bgMusic").src += "&autoplay=1";
 }
 
 function checkAnswer() {
   let value = document.getElementById("rating").value;
-  let response = document.getElementById("response");
-
-  if (value == 10) {
-    document.getElementById("question").style.display = "none";
-    startCakeScene();
+  if (value !== "10") {
+    alert("uhoh you dont seem ritsika coz she would never say that bye 😝");
   } else {
-    response.innerHTML = "Uh oh. You don’t seem like Ritsika. She would never say that. Bye.";
+    document.getElementById("question").style.display = "none";
+    showCake();
   }
 }
 
-function startCakeScene() {
-  let cake = document.getElementById("cake-area");
-  cake.style.display = "flex";
+function showCake() {
+  document.getElementById("cakeScene").style.display = "flex";
 
-  let countdown = document.getElementById("countdown");
-  let numbers = ["Blow it in 3...", "2...", "1..."];
-  let i = 0;
+  let count = 3;
+  let countdownText = document.getElementById("countdown");
 
-  let interval = setInterval(() => {
-    countdown.innerHTML = numbers[i];
-    i++;
-    if (i === numbers.length) {
-      clearInterval(interval);
-      setTimeout(() => {
-        document.getElementById("flame").innerHTML = "";
-        countdown.innerHTML = "Make a wish...";
-        setTimeout(() => {
-          cake.style.display = "none";
-          document.getElementById("gift-screen").style.display = "flex";
-        }, 10000);
-      }, 1000);
+  let timer = setInterval(function() {
+    countdownText.innerText = "Blow the candle in " + count + "...";
+    count--;
+    if (count < 0) {
+      clearInterval(timer);
+      document.getElementById("flame").innerText = "🕯";
+      countdownText.innerText = "";
+      setTimeout(showWish, 1000);
     }
   }, 1000);
 }
 
-function openGift() {
-  document.getElementById("letter").style.display = "block";
+function showWish() {
+  document.getElementById("cakeScene").style.display = "none";
+  document.getElementById("wishScene").style.display = "flex";
+
+  setTimeout(function() {
+    document.getElementById("wishScene").style.display = "none";
+    document.getElementById("giftScene").style.display = "flex";
+  }, 10000);
 }
+
+function openGift() {
+  document.getElementById("giftScene").style.display = "none";
+  document.getElementById("letterScene").style.display = "flex";
+}
+
+/* Floating hearts generator */
+setInterval(function() {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (20 + Math.random() * 30) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+
 </script>
 
 </body>
