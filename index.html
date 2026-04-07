@@ -2,213 +2,165 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Ritsika 🎂💖</title>
+<title>Ritsika 🎂</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ffd6ec, #ffe6f7);
-  overflow-x: hidden;
   text-align: center;
+  overflow: hidden;
 }
 
-/* Floating Hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  color: #ff4da6;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-110vh); opacity: 0; }
-}
-
-/* Landing */
-#landing {
+.screen {
+  display: none;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 button {
-  background: white;
+  padding: 12px 25px;
+  border-radius: 25px;
   border: none;
-  padding: 15px 30px;
-  border-radius: 30px;
-  font-size: 18px;
-  cursor: pointer;
-  color: #ff4da6;
-}
-
-button:hover {
-  background: #ffe6f2;
-}
-
-#main {
-  display: none;
-  padding: 20px;
-}
-
-h1 {
-  color: #ff1493;
-}
-
-.section {
-  margin-top: 40px;
-}
-
-/* Bars */
-.bar-container {
-  width: 80%;
-  margin: 10px auto;
-  background: #ffe6f2;
-  border-radius: 20px;
-}
-
-.bar {
-  height: 20px;
-  border-radius: 20px;
-  background: #ff4da6;
-  width: 0;
-  transition: width 2s;
-}
-
-/* Final Box */
-#final {
-  margin-top: 50px;
-  padding: 20px;
   background: white;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+  color: #ff1493;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#landing { display: flex; }
+
+#cake-area {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(#ffe6f7, #ffcce6);
+}
+
+.cake {
+  font-size: 120px;
+}
+
+.flame {
+  font-size: 40px;
+  position: relative;
+  top: -120px;
+}
+
+#gift {
+  font-size: 100px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+#letter {
   display: none;
+  background: #fdf5e6;
+  width: 70%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  margin-top: 20px;
+  font-family: "Courier New", cursive;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Landing -->
-<div id="landing">
-  <h1>⚠ Confidential File</h1>
-  <p>Subject: Ritsika</p>
-  <p>Status: Chaotic. Delusional. Iconic.</p>
-  <button onclick="start()">Enter 💖</button>
+<!-- Screen 1 -->
+<div id="landing" class="screen">
+  <h1>Enter here Ritsi 🎀</h1>
+  <button onclick="goToQuestion()">Enter</button>
 </div>
 
-<!-- Main Content -->
-<div id="main">
-  <h1>We Share One Braincell 🤭</h1>
-  <div id="typing"></div>
-
-  <div class="section">
-    <h2>Personality Analysis</h2>
-
-    Chaos
-    <div class="bar-container">
-      <div class="bar" id="chaos"></div>
-    </div>
-
-    Delusion
-    <div class="bar-container">
-      <div class="bar" id="delusion"></div>
-    </div>
-
-    Humour
-    <div class="bar-container">
-      <div class="bar" id="humour"></div>
-    </div>
-
-    Common Sense
-    <div class="bar-container">
-      <div class="bar" id="sense"></div>
-    </div>
-  </div>
-
-  <button onclick="showFinal()">Reveal Birthday Message 🎂</button>
-
-  <div id="final">
-    <h2>🎂 Level +1 Unlocked 🎂</h2>
-    <p>Chaos upgraded.</p>
-    <p>Delusion refined.</p>
-    <p>Coolness permanent.</p>
-    <p><strong>Happy Birthday, Ritsika 💖</strong></p>
-    <p>— JS 🤟🏻</p>
-  </div>
+<!-- Screen 2 -->
+<div id="question" class="screen">
+  <h2>Wait.</h2>
+  <h3>Important Question.</h3>
+  <p>Rate Bhavika on a scale of 1–10</p>
+  <input type="number" id="rating" min="1" max="10">
+  <button onclick="checkAnswer()">Submit</button>
+  <p id="response"></p>
 </div>
 
-<!-- Music -->
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/YCC2SowAsJ0?autoplay=1&loop=1&playlist=YCC2SowAsJ0"
-frameborder="0"
-allow="autoplay">
-</iframe>
+<!-- Screen 3 -->
+<div id="cake-area" class="screen">
+  <div class="cake">🎂</div>
+  <div class="flame" id="flame">🔥</div>
+  <h2 id="countdown"></h2>
+</div>
+
+<!-- Screen 4 -->
+<div id="gift-screen" class="screen">
+  <h2>Open your gift 🎁</h2>
+  <div id="gift" onclick="openGift()">🎁</div>
+
+  <div id="letter">
+    <p>
+      hello ritsi happy birthday ilysm i hope you have the sweetest and nicest birthday today and im so happy that youre getting old i wish you all the best mwah
+    </p>
+    <p>— Bhavika 🤟🏻</p>
+  </div>
+</div>
 
 <script>
-function start() {
+function goToQuestion() {
   document.getElementById("landing").style.display = "none";
-  document.getElementById("main").style.display = "block";
-  typeText();
-  animateBars();
-  createHearts();
+  document.getElementById("question").style.display = "flex";
 }
 
-let text = [
-  "She thinks.",
-  "I panic.",
-  "We laugh.",
-  "Situation unresolved.",
-  "Still the cool kids."
-];
+function checkAnswer() {
+  let value = document.getElementById("rating").value;
+  let response = document.getElementById("response");
 
-let i = 0;
-function typeText() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text[i] + "<br>";
+  if (value == 10) {
+    document.getElementById("question").style.display = "none";
+    startCakeScene();
+  } else {
+    response.innerHTML = "Uh oh. You don’t seem like Ritsika. She would never say that. Bye.";
+  }
+}
+
+function startCakeScene() {
+  let cake = document.getElementById("cake-area");
+  cake.style.display = "flex";
+
+  let countdown = document.getElementById("countdown");
+  let numbers = ["Blow it in 3...", "2...", "1..."];
+  let i = 0;
+
+  let interval = setInterval(() => {
+    countdown.innerHTML = numbers[i];
     i++;
-    setTimeout(typeText, 700);
-  }
+    if (i === numbers.length) {
+      clearInterval(interval);
+      setTimeout(() => {
+        document.getElementById("flame").innerHTML = "";
+        countdown.innerHTML = "Make a wish...";
+        setTimeout(() => {
+          cake.style.display = "none";
+          document.getElementById("gift-screen").style.display = "flex";
+        }, 10000);
+      }, 1000);
+    }
+  }, 1000);
 }
 
-function animateBars() {
-  setTimeout(() => { document.getElementById("chaos").style.width = "100%"; }, 500);
-  setTimeout(() => { document.getElementById("delusion").style.width = "94%"; }, 800);
-  setTimeout(() => { document.getElementById("humour").style.width = "100%"; }, 1100);
-  setTimeout(() => { document.getElementById("sense").style.width = "15%"; }, 1400);
-}
-
-function showFinal() {
-  document.getElementById("final").style.display = "block";
-  confetti();
-}
-
-function createHearts() {
-  setInterval(() => {
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💗";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }, 300);
-}
-
-function confetti() {
-  for (let i = 0; i < 100; i++) {
-    let conf = document.createElement("div");
-    conf.classList.add("heart");
-    conf.innerHTML = "🎉";
-    conf.style.left = Math.random() * 100 + "vw";
-    conf.style.fontSize = "15px";
-    document.body.appendChild(conf);
-    setTimeout(() => conf.remove(), 4000);
-  }
+function openGift() {
+  document.getElementById("letter").style.display = "block";
 }
 </script>
 
