@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ritsika 🎂💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd6ec, #ffe6f7);
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* Floating Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  color: #ff4da6;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* Landing */
+#landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #ff4da6;
+}
+
+button:hover {
+  background: #ffe6f2;
+}
+
+#main {
+  display: none;
+  padding: 20px;
+}
+
+h1 {
+  color: #ff1493;
+}
+
+.section {
+  margin-top: 40px;
+}
+
+/* Bars */
+.bar-container {
+  width: 80%;
+  margin: 10px auto;
+  background: #ffe6f2;
+  border-radius: 20px;
+}
+
+.bar {
+  height: 20px;
+  border-radius: 20px;
+  background: #ff4da6;
+  width: 0;
+  transition: width 2s;
+}
+
+/* Final Box */
+#final {
+  margin-top: 50px;
+  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Landing -->
+<div id="landing">
+  <h1>⚠ Confidential File</h1>
+  <p>Subject: Ritsika</p>
+  <p>Status: Chaotic. Delusional. Iconic.</p>
+  <button onclick="start()">Enter 💖</button>
+</div>
+
+<!-- Main Content -->
+<div id="main">
+  <h1>We Share One Braincell 🤭</h1>
+  <div id="typing"></div>
+
+  <div class="section">
+    <h2>Personality Analysis</h2>
+
+    Chaos
+    <div class="bar-container">
+      <div class="bar" id="chaos"></div>
+    </div>
+
+    Delusion
+    <div class="bar-container">
+      <div class="bar" id="delusion"></div>
+    </div>
+
+    Humour
+    <div class="bar-container">
+      <div class="bar" id="humour"></div>
+    </div>
+
+    Common Sense
+    <div class="bar-container">
+      <div class="bar" id="sense"></div>
+    </div>
+  </div>
+
+  <button onclick="showFinal()">Reveal Birthday Message 🎂</button>
+
+  <div id="final">
+    <h2>🎂 Level +1 Unlocked 🎂</h2>
+    <p>Chaos upgraded.</p>
+    <p>Delusion refined.</p>
+    <p>Coolness permanent.</p>
+    <p><strong>Happy Birthday, Ritsika 💖</strong></p>
+    <p>— JS 🤟🏻</p>
+  </div>
+</div>
+
+<!-- Music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/YCC2SowAsJ0?autoplay=1&loop=1&playlist=YCC2SowAsJ0"
+frameborder="0"
+allow="autoplay">
+</iframe>
+
+<script>
+function start() {
+  document.getElementById("landing").style.display = "none";
+  document.getElementById("main").style.display = "block";
+  typeText();
+  animateBars();
+  createHearts();
+}
+
+let text = [
+  "She thinks.",
+  "I panic.",
+  "We laugh.",
+  "Situation unresolved.",
+  "Still the cool kids."
+];
+
+let i = 0;
+function typeText() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text[i] + "<br>";
+    i++;
+    setTimeout(typeText, 700);
+  }
+}
+
+function animateBars() {
+  setTimeout(() => { document.getElementById("chaos").style.width = "100%"; }, 500);
+  setTimeout(() => { document.getElementById("delusion").style.width = "94%"; }, 800);
+  setTimeout(() => { document.getElementById("humour").style.width = "100%"; }, 1100);
+  setTimeout(() => { document.getElementById("sense").style.width = "15%"; }, 1400);
+}
+
+function showFinal() {
+  document.getElementById("final").style.display = "block";
+  confetti();
+}
+
+function createHearts() {
+  setInterval(() => {
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 300);
+}
+
+function confetti() {
+  for (let i = 0; i < 100; i++) {
+    let conf = document.createElement("div");
+    conf.classList.add("heart");
+    conf.innerHTML = "🎉";
+    conf.style.left = Math.random() * 100 + "vw";
+    conf.style.fontSize = "15px";
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 4000);
+  }
+}
+</script>
+
+</body>
+</html>
